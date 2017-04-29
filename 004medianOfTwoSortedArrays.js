@@ -11,9 +11,7 @@ var findMedianSortedArrays = function(nums1, nums2) {
     }
     var lenOfNum1 = nums1.length;
     var lenOfNum2 = nums2.length;
-    
-    console.log(lenOfNum1)
-    console.log(lenOfNum2)
+
     if (lenOfNum1 === 0) {
         var mid = parseInt(nums2.length/2);
         console.log(mid)
@@ -21,32 +19,32 @@ var findMedianSortedArrays = function(nums1, nums2) {
             return nums2[mid];
         return (nums2[mid] + nums2[mid-1])/2;
     }
-    
+
     var searchStart = 0;
     var searchEnd = lenOfNum1;
     var halfLen = Number.parseInt((lenOfNum1 + lenOfNum2 + 1) / 2);
-    
+
     var num1Cursor;
     var num2Cursor;
     while (searchStart <= searchEnd) {
         num1Cursor = Number.parseInt((searchStart + searchEnd) / 2);
         num2Cursor = halfLen - num1Cursor;
-        
-        if (num1Cursor < lenOfNum1 && 
+
+        if (num1Cursor < lenOfNum1 &&
             nums2[num2Cursor - 1] > nums1[num1Cursor]) {
-            
+
             searchStart = num1Cursor + 1;
         }
-        else if (num1Cursor > 0 && 
+        else if (num1Cursor > 0 &&
             nums1[num1Cursor - 1] > nums2[num2Cursor]) {
-            
+
             searchEnd = num1Cursor - 1;
         }
         else {
             var maxOfLeft;
             var maxOfRight;
             if (num1Cursor == 0) {
-                maxOfLeft = nums2[num2Cursor - 1];   
+                maxOfLeft = nums2[num2Cursor - 1];
             }
             else if (num2Cursor == 0) {
                 maxOfLeft = nums1[num1Cursor - 1];
@@ -54,12 +52,11 @@ var findMedianSortedArrays = function(nums1, nums2) {
             else {
                 maxOfLeft = Math.max(nums1[num1Cursor - 1], nums2[num2Cursor - 1]);
             }
-            
+
             if ((lenOfNum1 + lenOfNum2)%2 === 1) {
                 return maxOfLeft;
             }
-            console.log(num1Cursor)
-            console.log(num2Cursor)
+
             if (num1Cursor == lenOfNum1) {
                 maxOfRight = nums2[num2Cursor];
             }
@@ -69,9 +66,10 @@ var findMedianSortedArrays = function(nums1, nums2) {
             else {
                 maxOfRight = Math.min(nums1[num1Cursor], nums2[num2Cursor]);
             }
-            
+
             return (maxOfRight + maxOfLeft)/2;
         }
     }
-    
+
 };
+module.exports = findMedianSortedArrays;
