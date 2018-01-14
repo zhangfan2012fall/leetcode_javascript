@@ -6,19 +6,21 @@ var cutOffTree = function(forest) {
     if (forest[0][0] === 0) {
         return -1;
     }
-    let trees = [];
+    var trees = [];
     for (let i = 0; i < forest.length; i++) {
-        for (let j = 0; j < forest.length; j++) {
-            if (forest[i][j] > 1)
+        for (let j = 0; j < forest[0].length; j++) {
+            if (forest[i][j] > 1) {
                 trees.push({x: i, y: j, height: forest[i][j]});
+            }
         }
     }
     trees = trees.sort((a, b) => a.height - b.height);
-
+    // console.log('tree = ', trees);
     var steps = 0;
     var startPoint = [0, 0];
     // bfs from lowest to highest.
     for (let i = 0; i < trees.length; i++) {
+        // console.log('i = ', i);
         steps += walkingDistance(trees[i], forest, startPoint);
         startPoint = [trees[i].x, trees[i].y];
     }
@@ -46,24 +48,29 @@ var bfs = function(x, y, tree, visitedTree, forest) {
         var len = q.length;
         while (len--) {
             var elem = q.shift();
+            // console.log('here?')
             if (elem[0] === tree.x && elem[1] === tree.y) {
+                // console.log('steps', steps);
                 return steps;
             }
             for (let i = 0; i < 4; i++) {
-                const nextX = x + dir[i][0];
-                const nextY = y + dir[i][1];
+                // console.log('dir = ', i);
+                const nextX = elem[0] + dir[i][0];
+                const nextY = elem[1] + dir[i][1];
                 if (nextX >= 0 && nextX < forest.length &&
 
                     nextY >= 0 && nextY < forest[0].length &&
-                   forest[nextX][nextY] > 0 &&
-                   !visitedTree[nextX][nextY]) {
+                forest[nextX][nextY] > 0 &&
+                !visitedTree[nextX][nextY]) {
                     visitedTree[nextX][nextY] = true;
+                    // console.log('push', [nextX, nextY]);
                     q.push([nextX, nextY]);
                 }
             }
         }
         steps++;
     }
+    // console.log('infinity');
     return Infinity;
 }
 module.exports = cutOffTree;
