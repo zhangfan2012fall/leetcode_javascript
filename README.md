@@ -5,6 +5,8 @@ Tries to coding javascript solution of leetcode.com
 Todo:
 719
 
-
 To run test cases:
 $node runCmd.js <testAlgorithmFile.js> <testCasesFile.js>
+
+1/14
+336, 675
