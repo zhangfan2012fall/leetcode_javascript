@@ -10,3 +10,5 @@ $node runCmd.js <testAlgorithmFile.js> <testCasesFile.js>
 
 1/14
 336, 675
+1/15
+76
