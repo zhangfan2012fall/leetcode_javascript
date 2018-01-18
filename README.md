@@ -3,7 +3,7 @@
 Tries to coding javascript solution of leetcode.com
 
 Can not solve:
-719, 629,
+719, 629, 140
 
 Needs to revisit:
 312
