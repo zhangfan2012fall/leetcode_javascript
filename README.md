@@ -18,6 +18,8 @@ Finished:
 1.16
 174 632 732
 
+1.17
+153
 
 To run test cases:
 $node runCmd.js <testAlgorithmFile.js> <testCasesFile.js>
